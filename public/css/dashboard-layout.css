@@ -1,0 +1,117 @@
+/* === Dashboard Layout & Sidebar === */
+.main-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.sidebar {
+    width: 240px;
+    background-color: #8b0000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+}
+
+.sidebar-header h4 {
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    transition: background 0.25s ease;
+}
+
+.sidebar-nav a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.sidebar-nav a.active {
+    background-color: #b22222;
+    font-weight: bold;
+}
+
+.logout-container {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.logout-btn {
+    background-color: #b22222;
+    border: none;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    transition: background 0.25s ease;
+    width: 100%;
+}
+
+.logout-btn:hover {
+    background-color: #a11c1c;
+}
+
+/* === Main Content === */
+.content-area {
+    flex-grow: 1;
+    margin-left: 240px;
+    padding: 2rem;
+}
+
+.dashboard-header {
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 0.5rem;
+}
+
+.time-text {
+    font-weight: 500;
+    color: #555;
+}
+
+/* === Table Styling === */
+#visitorTable th {
+    font-weight: 600;
+}
+
+#visitorTable td {
+    vertical-align: middle;
+}
+
+/* === Action Buttons === */
+.action-buttons {
+    text-align: center;
+}
+
+.action-buttons .btn {
+    border-radius: 50px;
+    transition: all 0.2s ease;
+}
+
+.action-buttons .btn:hover {
+    transform: translateY(-2px);
+}
+
+/* === Utility === */
+.stat-card {
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: scale(1.03);
+}

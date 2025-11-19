@@ -1,0 +1,320 @@
+/* ===========================================
+   GENERAL PAGE STYLE
+=========================================== */
+body {
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    background: linear-gradient(135deg, #fff1f1 0%, #ffd6d6 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* ===========================================
+   CONTAINER
+=========================================== */
+.visitor-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 30px 50px;
+    width: 90%;
+    max-width: 900px;
+    box-shadow: 0 8px 24px rgba(214, 0, 28, 0.15);
+    backdrop-filter: blur(8px);
+    transition: 0.3s ease;
+    box-sizing: border-box;
+}
+
+.visitor-container:hover {
+    box-shadow: 0 10px 28px rgba(214, 0, 28, 0.25);
+}
+
+/* ===========================================
+   LOGO
+=========================================== */
+.logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.school-logo {
+    width: 120px;
+    height: auto;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+/* ===========================================
+   HEADING
+=========================================== */
+@font-face {
+    font-family: 'Rosean';
+    src: url('../fonts/Rosean.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h2 {
+    font-family: 'Rosean', serif;
+    text-align: center;
+    color: #d6001c;
+    font-size: 50px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    letter-spacing: 0.5px;
+}
+
+/* ===========================================
+   FORM LAYOUT
+=========================================== */
+.form-landscape {
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+    flex-wrap: wrap; /* allows stacking automatically */
+}
+
+.form-section {
+    background: #fff7f8;
+    border: 1px solid #f1b4b8;
+    border-radius: 12px;
+    padding: 25px;
+    width: 48%; /* two columns on desktop */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+/* Section titles */
+.section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #9a0e18;
+    margin-bottom: 15px;
+    border-left: 4px solid #d6001c;
+    padding-left: 10px;
+}
+
+/* Form fields */
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: 600;
+    color: #9a0e18;
+    margin-bottom: 6px;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #f1b4b8;
+    background: #fff;
+    font-size: 15px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    border-color: #d6001c;
+    box-shadow: 0 0 8px rgba(214,0,28,0.25);
+    outline: none;
+}
+
+/* ===========================================
+   SUBMIT BUTTON
+=========================================== */
+.form-submit {
+    margin-top: 25px;
+    text-align: center;
+}
+
+button.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #d6001c, #b50018);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button.submit-btn:hover {
+    background: linear-gradient(135deg, #b50018, #930015);
+    transform: translateY(-1px);
+}
+
+/* ===========================================
+   ALERTS
+=========================================== */
+.alert {
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.alert.success {
+    background: #eafaf0;
+    color: #166534;
+    border-left: 5px solid #28a745;
+}
+
+.alert.error {
+    background: #fdeaea;
+    color: #842029;
+    border-left: 5px solid #dc3545;
+}
+
+/* ===========================================
+   APPOINTMENT SECTION
+=========================================== */
+#appointmentSection {
+    border: 1px solid rgba(214,0,28,0.1);
+    background: rgba(255,255,255,0.9);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 15px;
+    box-shadow: 0 3px 10px rgba(214,0,28,0.08);
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transform: scale(0.98);
+    transition: all 0.4s ease;
+}
+
+#appointmentSection.active {
+    opacity: 1;
+    max-height: 350px;
+    transform: scale(1);
+}
+
+/* ===========================================
+   ACCESS CODE OVERLAY
+=========================================== */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.overlay-content {
+    background: #fff;
+    padding: 35px 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(214,0,28,0.2);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.overlay-content input {
+    margin-bottom: 15px;
+}
+
+.form-group.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;           /* space between checkbox and label */
+    margin-bottom: 20px;
+}
+
+.form-group.checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #d6001c;  /* modern browsers support this */
+    cursor: pointer;
+    position: relative;
+    right: 120px;
+    }
+
+
+
+.form-group.checkbox-group label {
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* ===========================================
+   RESPONSIVE MOBILE (auto-fit for all phones)
+=========================================== */
+@media (max-width: 768px) {
+    
+    .form-landscape {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+
+    .form-section {
+        width: 100%; /* full width on mobile */
+        padding: 20px;
+    }
+
+    .visitor-container {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    .school-logo {
+        width: 90px;
+        margin-bottom: 12px;
+    }
+
+    input, textarea, select {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    button.submit-btn {
+        font-size: 15px;
+        padding: 12px;
+    }
+
+    #appointmentSection.active {
+        max-height: 300px;
+    }
+
+    .overlay-content {
+        padding: 25px 30px;
+        max-width: 350px;
+    }
+
+  .form-group.checkbox-group {
+        gap: 8px;
+    }
+
+    .form-group.checkbox-group input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        position: relative;
+        right: 100px;
+       
+    }
+
+    .form-group.checkbox-group label {
+        font-size: 14px;
+    }
+}

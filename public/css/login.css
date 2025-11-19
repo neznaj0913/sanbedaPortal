@@ -1,0 +1,141 @@
+/* ===== General Styles ===== */
+body {
+    
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(135deg, #d6001c, #87000f);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* ===== Login / Auth Container ===== */
+.login-container, .auth-container {
+    background: #fff;
+    color: #333;
+    padding: 40px 50px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+}
+
+/* ===== Headings ===== */
+.login-container h2,
+.auth-container h2 {
+    color: #d6001c;
+    margin-bottom: 25px;
+}
+
+/* ===== Labels ===== */
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+/* ===== Inputs ===== */
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+    border-color: #d6001c;
+    outline: none;
+    box-shadow: 0 0 5px rgba(214,0,28,0.3);
+}
+
+/* ===== Buttons ===== */
+button, .btn {
+    width: 100%;
+    background: #d6001c;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+button:hover, .btn:hover {
+    background: #a50014;
+    transform: translateY(-1px);
+}
+
+button:active, .btn:active {
+    transform: scale(0.98);
+}
+
+/* ===== Error / Status Messages ===== */
+.error-messages, .error {
+    margin-top: 10px;
+    color: #d6001c;
+    font-size: 14px;
+    text-align: left;
+}
+
+/* ===== Register / Links ===== */
+.register-link {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.register-link a, .forgot-link {
+    color: #d6001c;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-link a:hover, .forgot-link:hover {
+    text-decoration: underline;
+}
+
+/* ===== Modal Styles ===== */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 8% auto; 
+    padding: 30px 25px;
+    border-radius: 12px;
+    max-width: 400px;
+    width: 90%;
+    position: relative;
+    text-align: center;
+}
+
+.modal-content .close {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-content .close:hover {
+    color: #b10012;
+}
