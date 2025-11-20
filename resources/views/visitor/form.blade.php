@@ -131,7 +131,6 @@ style="background: url('{{ asset('src/bg.jpg') }}') no-repeat center center fixe
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-    // 🔄 Auto-hide success message
     const successMsg = document.getElementById("successMessage");
     if (successMsg) {
         setTimeout(() => {
@@ -141,7 +140,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 4000);
     }
 
-    // 🔒 Blur form if overlay exists
     const overlay = document.getElementById('accessOverlay');
     if (overlay) {
         document.querySelector('.visitor-container').classList.add('blurred');

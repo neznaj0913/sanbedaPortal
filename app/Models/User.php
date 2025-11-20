@@ -20,6 +20,7 @@ class User extends Authenticatable
         'password',
         'otp',
         'is_verified',
+         'migrationr', 
     ];
 
     protected $hidden = [

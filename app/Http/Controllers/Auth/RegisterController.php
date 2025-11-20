@@ -6,24 +6,23 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-use App\Models\AllowedEmail;
 use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
     public function showRegistrationForm()
     {
-        // ✅ Points to your Blade file: resources/views/auth/register.blade.php
         return view('auth.register');
     }
 
     public function register(Request $request)
     {
-        // ✅ Validate inputs
+        // Validate inputs
         $request->validate([
             'username'   => 'required|string|unique:users,username',
             'firstname'  => 'required|string',
             'lastname'   => 'required|string',
+
             'email'      => [
                 'required',
                 'email',
@@ -34,14 +33,22 @@ class RegisterController extends Controller
                     }
                 },
             ],
-            'password'   => 'required|min:6|confirmed',
+
+            // 🔒 UPDATED PASSWORD RULE (required alphanumeric)
+            'password' => [
+                'required',
+                'min:6',
+                'confirmed',
+                'regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+$/', // letters + numbers only
+            ],
+        ], [
+            'password.regex' => 'Password must contain letters and numbers only.',
         ]);
 
-        // ✅ Check if email exists in allowed_emails
+        // Check if email exists in allowed_emails
         $allowed = DB::table('allowed_emails')->where('email', $request->email)->exists();
 
         if (!$allowed) {
-            // 🚀 Add new email to allowed_emails if not found
             DB::table('allowed_emails')->insert([
                 'email'      => $request->email,
                 'created_at' => now(),
@@ -49,8 +56,8 @@ class RegisterController extends Controller
             ]);
         }
 
-        // ✅ Create new user in the `users` table
-        $user = User::create([
+        // Create user
+        User::create([
             'username'    => $request->username,
             'firstname'   => $request->firstname,
             'lastname'    => $request->lastname,
@@ -60,7 +67,8 @@ class RegisterController extends Controller
             'is_verified' => true,
         ]);
 
-        // ✅ Redirect back to login with success message
-        return redirect()->route('login.view')->with('success', 'Registration successful! You can now log in.');
+        return redirect()
+            ->route('login.view')
+            ->with('success', 'Registration successful! You can now log in.');
     }
 }
