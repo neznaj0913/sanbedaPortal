@@ -107,5 +107,23 @@ document.addEventListener("DOMContentLoaded", () => {
             verifyOtpBtn.disabled = false;
             verifyOtpBtn.textContent = "Verify OTP";
         }
+        
     });
 });
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const toggles = document.querySelectorAll(".toggle-password");
+
+            toggles.forEach(toggle => {
+                toggle.addEventListener("click", () => {
+                    const targetId = toggle.getAttribute("data-target");
+                    const input = document.getElementById(targetId);
+
+                    const visible = input.type === "text";
+                    input.type = visible ? "password" : "text";
+                    toggle.textContent = visible ? "👁" : "⌣";
+                });
+            });
+        });
+

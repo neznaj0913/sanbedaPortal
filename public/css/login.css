@@ -129,3 +129,33 @@ button:active, .btn:active {
 .modal-content .close:hover {
     color: #b10012;
 }
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding-right: 42px; 
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 30%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 20px;
+    color: #888;
+    user-select: none;
+    transition: color 0.2s ease;
+}
+
+.toggle-password:hover {
+    color: #d6001c;
+}
+
+.toggle-password:active {
+    transform: translateY(-50%) scale(0.95);
+}

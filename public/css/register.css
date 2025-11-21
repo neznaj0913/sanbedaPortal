@@ -182,3 +182,26 @@ button[disabled] {
         padding: 30px 20px;
     }
 }
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input {
+    padding-right: 42px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #666;
+    transition: color .2s;
+}
+
+.toggle-password:hover {
+    color: #d6001c;
+}

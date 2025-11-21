@@ -43,11 +43,16 @@
     </div>
 
     <label>Password:</label>
-    <input type="password" name="password" required>
+            <div class="password-wrapper">
+                <input type="password" id="password" name="password" required>
+                <span class="toggle-password" data-target="password">👁</span>
+            </div>
 
-    <label>Confirm Password:</label>
-    <input type="password" name="password_confirmation" required>
-
+            <label>Confirm Password:</label>
+            <div class="password-wrapper">
+                <input type="password" id="password_confirmation" name="password_confirmation" required>
+                <span class="toggle-password" data-target="password_confirmation">👁</span>
+            </div>
     <br>
     <button type="submit" id="registerBtn" disabled>Register</button>
 </form>
