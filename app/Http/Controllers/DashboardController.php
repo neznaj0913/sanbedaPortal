@@ -8,18 +8,15 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    // 🏠 Dashboard main page
     public function index()
     {
         $user = Auth::user();
 
-        // Visitors sorted by company (DESC)
         $visitors = Visitor::orderBy('company_affiliation', 'desc')->paginate();
 
         return view('dashboard.user', compact('user', 'visitors'));
     }
 
-    // 📈 Stats page
     public function stats()
     {
         $totalVisitors = Visitor::count();

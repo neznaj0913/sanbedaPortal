@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ asset('css/visitor.css') }}">
 </head>
 <body>
-    <!-- 🔐 Access Code Overlay -->
+   
     <div class="overlay">
         <div class="overlay-content">
             <h3>Enter Access Code</h3>
@@ -35,7 +35,7 @@
 
     {{-- Optional Script for Animation or Redirection --}}
     <script>
-        // Example: smooth fade out when form submitted
+        
         const form = document.querySelector('form');
         form.addEventListener('submit', () => {
             document.querySelector('.overlay').style.opacity = '0.6';

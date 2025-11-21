@@ -114,7 +114,7 @@ header .header-text {
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
-/* Disabled Buttons */
+
 button:disabled,
 button[disabled] {
     background: #ccc;
@@ -123,7 +123,7 @@ button[disabled] {
     opacity: 0.8;
 }
 
-/* ===== Alerts / Error Messages ===== */
+
 .alert {
     padding: 12px 15px;
     border-radius: 6px;
@@ -150,7 +150,7 @@ button[disabled] {
     text-align: left;
 }
 
-/* ===== Links ===== */
+
 .auth-container a {
     display: inline-block;
     margin-top: 15px;
@@ -164,7 +164,7 @@ button[disabled] {
     color: #9b000f;
 }
 
-/* ===== Modal ===== */
+
 .modal {
     display: none;
     position: fixed;
@@ -205,7 +205,7 @@ button[disabled] {
     color: #b10012;
 }
 
-/* ===== Mobile Responsiveness ===== */
+
 @media (max-width: 480px) {
     .auth-container {
         padding: 25px 20px;

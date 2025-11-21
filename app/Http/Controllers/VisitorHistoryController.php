@@ -10,9 +10,6 @@ use Carbon\Carbon;
 
 class VisitorHistoryController extends Controller
 {
-    /**
-     * Display filtered visitor history.
-     */
     public function index(Request $request)
     {
         $search    = $request->input('search');
@@ -22,7 +19,6 @@ class VisitorHistoryController extends Controller
 
         $query = Visitor::query();
 
-        // 🔍 SEARCH FILTER
         if (!empty($search)) {
             $query->where(function ($q) use ($search) {
                 $q->where('gatepass_no', 'like', "%{$search}%")
@@ -34,7 +30,6 @@ class VisitorHistoryController extends Controller
             });
         }
 
-        // ✅ STATUS FILTER
         if ($status !== 'all') {
             if ($status === 'Inside') {
                 $query->whereNotNull('time_in')->whereNull('time_out');
@@ -43,7 +38,6 @@ class VisitorHistoryController extends Controller
             }
         }
 
-        // 📅 DATE RANGE FILTER
         if (!empty($from_date) && !empty($to_date)) {
             $query->whereBetween('time_in', [
                 Carbon::parse($from_date)->startOfDay(),
@@ -55,7 +49,6 @@ class VisitorHistoryController extends Controller
             $query->whereDate('time_in', '<=', Carbon::parse($to_date));
         }
 
-        // ✅ Select needed columns (added gatepass_no)
         $visitors = $query
             ->select(
                 'id',
@@ -77,9 +70,6 @@ class VisitorHistoryController extends Controller
         return view('dashboard.history', compact('visitors', 'search', 'status', 'from_date', 'to_date'));
     }
 
-    /**
-     * Export visitor data to Excel.
-     */
     public function export(Request $request)
     {
         $search    = $request->input('search');
@@ -90,7 +80,6 @@ class VisitorHistoryController extends Controller
 
         $query = Visitor::query();
 
-        // 🔍 SEARCH FILTER
         if (!empty($search)) {
             $query->where(function ($q) use ($search) {
                 $q->where('gatepass_no', 'like', "%{$search}%")
@@ -102,7 +91,6 @@ class VisitorHistoryController extends Controller
             });
         }
 
-        // ✅ STATUS FILTER
         if ($status !== 'all') {
             if ($status === 'Inside') {
                 $query->whereNotNull('time_in')->whereNull('time_out');
@@ -111,7 +99,6 @@ class VisitorHistoryController extends Controller
             }
         }
 
-        // 📅 DATE RANGE OR TODAY FILTER
         if ($today) {
             $query->whereDate('time_in', Carbon::now('Asia/Manila')->toDateString());
         } else {
@@ -127,7 +114,6 @@ class VisitorHistoryController extends Controller
             }
         }
 
-        // ✅ Include gatepass_no in export
         $visitors = $query
             ->select(
                 'id',
@@ -151,9 +137,6 @@ class VisitorHistoryController extends Controller
         return Excel::download(new VisitorExport($visitors), $fileName);
     }
 
-    /**
-     * 🧠 Fetch visitors dynamically (for AJAX refresh)
-     */
     public function fetchVisitors()
     {
         $visitors = Visitor::select(
@@ -167,7 +150,7 @@ class VisitorHistoryController extends Controller
             'time_out',
             'status'
         )
-        ->orderBy('gatepass_no', 'asc') // ✅ Sorted by gatepass number
+        ->orderBy('gatepass_no', 'asc') 
         ->get();
 
         return response()->json(['visitors' => $visitors]);

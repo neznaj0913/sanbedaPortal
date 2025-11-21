@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const currentlyInside = document.getElementById("currently-inside");
     const checkedOut = document.getElementById("checked-out");
 
-    const REFRESH_INTERVAL = 5000; // refresh every 5 seconds
+    const REFRESH_INTERVAL = 5000; 
     let isFetching = false;
 
     async function fetchVisitors() {
@@ -92,10 +92,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Initial load + auto-refresh
     fetchVisitors();
     const refreshInterval = setInterval(fetchVisitors, REFRESH_INTERVAL);
 
-    // Stop refreshing when leaving the page
     window.addEventListener("beforeunload", () => clearInterval(refreshInterval));
 });

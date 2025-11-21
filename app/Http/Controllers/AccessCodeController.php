@@ -13,14 +13,12 @@ class AccessCodeController extends Controller
         $this->middleware('auth');
     }
 
-    // Show generated codes
     public function index()
     {
         $codes = AccessCode::orderBy('created_at', 'desc')->get();
         return view('dashboard.generate-code', compact('codes'));
     }
 
-    // Generate new code
     public function generate()
     {
         $code = strtoupper(Str::random(8));
@@ -32,7 +30,6 @@ class AccessCodeController extends Controller
         return redirect()->back()->with('success', "New code generated: $code");
     }
 
-    // Verify (no expiration + no used flag)
     public function verify(Request $request)
     {
         $request->validate(['code' => 'required|string']);
@@ -43,7 +40,6 @@ class AccessCodeController extends Controller
             return redirect()->back()->withErrors(['code' => 'Invalid access code.']);
         }
 
-        // Grant 1-month access
         session([
             'access_granted' => true,
             'access_granted_at' => now()
@@ -52,7 +48,6 @@ class AccessCodeController extends Controller
         return redirect()->route('visitor.form');
     }
 
-    // Delete a generated code
     public function delete($id)
 {
     AccessCode::where('id', $id)->delete();

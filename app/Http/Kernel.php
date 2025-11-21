@@ -66,7 +66,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'verify.visitor.code' => \App\Http\Middleware\VerifyVisitorCode::class,
         'visitor.access' => \App\Http\Middleware\CheckVisitorAccess::class,
+         'superadmin' => \App\Http\Middleware\SuperAdmin::class,
+];
 
-
-    ];
 }

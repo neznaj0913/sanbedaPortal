@@ -11,7 +11,7 @@
     color: #ffffff;
     background: transparent;
     width: 100%;
-    position: fixed; /* stays at the bottom */
+    position: fixed; 
     bottom: 0;
     left: 0;
 }

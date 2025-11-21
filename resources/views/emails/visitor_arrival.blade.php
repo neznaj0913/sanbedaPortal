@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <title>Visitor Arrival Notification</title>
 </head>
-<body style="font-family: Arial, sans-serif; color: #333;">
-    <h2>Visitor Arrival Notification</h2>
+<body style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
+    
+    <h2 style="color:#b30000;">Visitor Arrival Notification</h2>
+
     <p>Hello,</p>
-    <p>A visitor has arrived:</p>
+
+    <p>You have a visitor currently waiting for you. Below are the visitor details:</p>
 
     <ul>
         <li><strong>Name:</strong> {{ $name }}</li>
@@ -17,6 +20,10 @@
         <li><strong>Time In:</strong> {{ \Carbon\Carbon::parse($time_in)->format('h:i A') }}</li>
     </ul>
 
-    <p>Thank you,<br>San Beda Visitor Management System</p>
+    <p>Please attend to your visitor at your earliest convenience.</p>
+
+    <p>Thank you,<br>
+    <strong>San Beda Visitor Management System</strong></p>
+
 </body>
 </html>

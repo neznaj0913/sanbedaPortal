@@ -11,14 +11,12 @@ use App\Models\AllowedEmail;
 
 class OtpController extends Controller
 {
-    // ✅ Send OTP to San Beda emails (auto-add new ones)
     public function sendOtp(Request $request)
     {
         $request->validate(['email' => 'required|email']);
 
         $email = strtolower(trim($request->email));
 
-        // ✅ Step 1: Check domain
         if (!str_ends_with($email, '@sanbeda-alabang.edu.ph')) {
             return response()->json([
                 'success' => false,
@@ -26,7 +24,6 @@ class OtpController extends Controller
             ]);
         }
 
-        // ✅ Step 2: Auto-add to allowed_emails if not exists
         $allowed = AllowedEmail::where('email', $email)->first();
 
         if (!$allowed) {
@@ -34,7 +31,6 @@ class OtpController extends Controller
             Log::info("Added new allowed email: {$email}");
         }
 
-        // ✅ Step 3: Generate and store OTP
         $otp = rand(100000, 999999);
         $key = 'registration_otp:' . $email;
         Cache::put($key, $otp, now()->addMinutes(10));
@@ -42,7 +38,6 @@ class OtpController extends Controller
         Log::info("OTP for {$email}: {$otp}");
 
         try {
-            // ✅ Send OTP email
             Mail::raw("Your San Beda registration OTP is: {$otp}", function ($message) use ($email) {
                 $message->to($email)->subject('San Beda Portal OTP Verification');
             });
@@ -60,7 +55,6 @@ class OtpController extends Controller
         }
     }
 
-    // ✅ Verify OTP
     public function checkOtp(Request $request)
     {
         $request->validate([

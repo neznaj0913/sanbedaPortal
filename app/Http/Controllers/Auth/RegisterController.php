@@ -17,7 +17,6 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        // Validate inputs
         $request->validate([
             'username'   => 'required|string|unique:users,username',
             'firstname'  => 'required|string',
@@ -34,18 +33,16 @@ class RegisterController extends Controller
                 },
             ],
 
-            // 🔒 UPDATED PASSWORD RULE (required alphanumeric)
             'password' => [
                 'required',
                 'min:6',
                 'confirmed',
-                'regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+$/', // letters + numbers only
+                'regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+$/', 
             ],
         ], [
             'password.regex' => 'Password must contain letters and numbers only.',
         ]);
 
-        // Check if email exists in allowed_emails
         $allowed = DB::table('allowed_emails')->where('email', $request->email)->exists();
 
         if (!$allowed) {
@@ -56,7 +53,6 @@ class RegisterController extends Controller
             ]);
         }
 
-        // Create user
         User::create([
             'username'    => $request->username,
             'firstname'   => $request->firstname,

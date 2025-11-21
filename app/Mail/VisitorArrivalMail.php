@@ -13,17 +13,13 @@ class VisitorArrivalMail extends Mailable
 
     public $visitor;
 
-    /**
-     * Create a new message instance.
-     */
+   
     public function __construct(Visitor $visitor)
     {
         $this->visitor = $visitor;
     }
 
-    /**
-     * Build the message.
-     */
+  
     public function build()
     {
         return $this->subject('Visitor Arrival Notification')

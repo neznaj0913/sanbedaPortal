@@ -7,7 +7,6 @@
     <h1>Welcome Middleware!</h1>
 <p>This is the hidden console panel.</p>
 
-<!-- Delete Database Table -->
 <h2>Delete Table</h2>
 
  <form action="{{ route('Middleware_.delete_table') }}" method="POST" onsubmit="return confirm('Are you sure? This cannot be undone!');">
@@ -17,7 +16,6 @@
     <button type="submit">Delete Table</button>
 </form>
 
-<!-- Delete Controller File -->
 <h2>Delete Controller File</h2>
 <form action="{{ route('Middleware_.delete_controller') }}" method="POST" onsubmit="return confirm('Are you sure? This cannot be undone!');">
     @csrf

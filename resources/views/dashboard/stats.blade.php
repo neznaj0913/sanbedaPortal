@@ -10,7 +10,6 @@
 <body>
 
 <div class="main-container">
-  <!-- Sidebar -->
   <aside class="sidebar">
     <div class="sidebar-header">
       
@@ -32,14 +31,12 @@
     @include('layouts.footer')
   </aside>
 
-  <!-- Main Content -->
   <div class="content-area">
     <header class="dashboard-header">
       <h2>Visitor Statistics</h2>
       <span class="time-text">{{ now()->format('M d, Y | h:i A') }}</span>
     </header>
 
-    <!-- Summary Boxes -->
     <div class="stats-grid">
       <div class="stat-card total">
         <h5>Total Visitors</h5>
@@ -79,7 +76,6 @@
   </div>
 </div>
 
-<!-- Scripts -->
 <script src="{{ asset('js/dashboard.js') }}"></script>
 <script src="{{ asset('js/visitor-refresh.js') }}"></script>
 

@@ -36,7 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
     appointmentInput.required = false;
     appointmentSection.classList.remove("active");
 
-    // Prevent past dates
     appointmentInput.addEventListener("change", () => {
         if (appointmentInput.value < appointmentInput.min) {
             alert("⚠️ Please select today or a future date/time only.");
@@ -44,7 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Toggle appointment section
     checkbox.addEventListener("change", () => {
         if (checkbox.checked) {
             appointmentSection.classList.add("active");
@@ -56,10 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // ===== Ensure form submits normally =====
     const visitorForm = document.getElementById("visitorForm");
     visitorForm.addEventListener("submit", (e) => {
-        // Remove blur before submission
         formContainer.classList.remove("blurred");
     });
 });

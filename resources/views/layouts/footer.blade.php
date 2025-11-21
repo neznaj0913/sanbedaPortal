@@ -10,7 +10,7 @@
     font-size: 14px;
     color: #ffffffff;
     border-top: none;
-    background: transparent;   /* ✅ Transparent background */
+    background: transparent;  
     position: absolute;
     top: 850px;
     right: 0px;

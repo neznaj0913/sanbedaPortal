@@ -8,7 +8,6 @@
 </head>
 <body>
 <div class="main-container">
-    <!-- Sidebar -->
     <aside class="sidebar">
         <div class="sidebar-header">
             <img src="{{ asset('src/Sanbeda-logo.png') }}" alt="SBCA Logo" class="sidebar-logo">
@@ -30,14 +29,12 @@
         @include('layouts.footer')
     </aside>
 
-    <!-- Main Content -->
     <div class="content-area" id="history-page">
         <header class="dashboard-header">
             <h2>Visitor History</h2>
             <span class="time-text">{{ now()->timezone('Asia/Manila')->format('M d, Y | h:i A') }}</span>
         </header>
 
-        <!-- 🔍 Filters -->
         <form method="GET" action="{{ route('dashboard.history') }}" id="filterForm" class="filter-form">
             <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
                 <input type="text" name="search" value="{{ $search ?? '' }}" placeholder="Search visitor..." class="filter-input">
@@ -54,13 +51,11 @@
                 <button type="submit" class="action-btn email-btn">Apply Filters</button>
                 <button type="button" onclick="clearFilters()" class="action-btn" style="background-color:#6c757d;">Clear</button>
 
-                <!-- Export Buttons -->
                 <button type="submit" formaction="{{ route('export.visitors') }}" class="action-btn timeout-btn">Export Excel</button>
                 <button type="submit" formaction="{{ route('export.visitors') }}" name="today" value="1" class="action-btn timeout-btn" style="background-color:#ffc107; color:#333;">Export Today</button>
             </div>
         </form>
 
-        <!-- 🧾 Table -->
         <div class="table-container">
             <table class="visitor-table" id="visitorTable">
                 <thead>
@@ -126,7 +121,6 @@
     </div>
 </div>
 
-<!-- ✅ Scripts -->
 <script>
 function clearFilters() {
     window.location.href = "{{ route('dashboard.history') }}";
@@ -140,7 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Dynamically load visitor-refresh.js only on this page
     const historyPage = document.getElementById('history-page');
     if (historyPage && document.getElementById('visitorTable')) {
         const script = document.createElement('script');

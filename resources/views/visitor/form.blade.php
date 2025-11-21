@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <title>Visitor Form | San Beda Portal</title>
 
-    <!-- IMPORTANT: Viewport for responsive layouts -->
+  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="{{ asset('css/forgot.css') }}"> <!-- contains modal & forgot form styles -->
+    <link rel="stylesheet" href="{{ asset('css/forgot.css') }}"> 
     <link rel="stylesheet" href="{{ asset('css/visitor.css') }}">
 </head>
 
@@ -19,7 +19,7 @@ style="background: url('{{ asset('src/bg.jpg') }}') no-repeat center center fixe
     <span class="header-text">San Beda College Alabang</span>
 </header>
 
-{{-- 🔐 Access Code Overlay --}}
+
 @if(!session('access_granted'))
 <div class="overlay" id="accessOverlay">
     <div class="overlay-content">
@@ -44,13 +44,13 @@ style="background: url('{{ asset('src/bg.jpg') }}') no-repeat center center fixe
 </div>
 @endif
 
-{{-- ✅ Visitor Form --}}
+
 <div class="visitor-container {{ !session('access_granted') ? 'blurred' : '' }}">
     <div class="logo-container"></div> 
 
     <h2>GATE-PASS FORM</h2>
 
-    {{-- ✅ Success Message --}}
+ 
     @if(session('success'))
         <div class="alert success" id="successMessage">
             {{ session('success') }} <br><br>
@@ -59,11 +59,11 @@ style="background: url('{{ asset('src/bg.jpg') }}') no-repeat center center fixe
         </div>
     @endif
 
-    {{-- ✅ Visitor Registration Form --}}
+    
     <form id="visitorForm" action="{{ route('visitor.store') }}" method="POST" class="form-landscape">
         @csrf
 
-        {{-- === LEFT SIDE === --}}
+       
         <div class="form-section left">
             <h3 class="section-title">Visitor Information</h3>
 
@@ -118,7 +118,7 @@ style="background: url('{{ asset('src/bg.jpg') }}') no-repeat center center fixe
                 <textarea name="purpose" id="purpose" rows="3" required>{{ old('purpose') }}</textarea>
             </div>
 
-            {{-- === Submit Button === --}}
+           
             <div class="form-submit">
                 <button type="submit" class="submit-btn">Submit</button>
             </div>
@@ -126,7 +126,7 @@ style="background: url('{{ asset('src/bg.jpg') }}') no-repeat center center fixe
     </form>
 </div>
 
-{{-- ✅ Scripts --}}
+
 <script src="{{ asset('js/visitor.js') }}"></script>
 
 <script>

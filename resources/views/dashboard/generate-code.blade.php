@@ -9,7 +9,6 @@
 </head>
 <body>
 <div class="main-container">
-    <!-- ✅ Sidebar -->
     <aside class="sidebar">
         <div class="sidebar-header">
         
@@ -33,7 +32,6 @@
         @include('layouts.footer')
     </aside>
 
-    <!-- ✅ Main Content -->
     <div class="content-area" id="codes-page">
         
         <header class="dashboard-header">
@@ -41,12 +39,12 @@
             <span class="time-text">{{ now()->timezone('Asia/Manila')->format('M d, Y | h:i A') }}</span>
         </header>
 
-        <!-- ✅ Alert message -->
+       
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
-        <!-- ✅ Generate new code button -->
+       
         <form action="{{ route('accesscode.generate') }}" method="POST" style="margin-bottom: 20px;">
             @csrf
             <button type="submit" class="btn btn-outline-primary">Generate New Code</button>

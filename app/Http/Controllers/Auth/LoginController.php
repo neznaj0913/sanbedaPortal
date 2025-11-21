@@ -27,12 +27,14 @@ class LoginController extends Controller
     $user = Auth::user();
     $request->session()->regenerate();
 
-    // ✅ Check if superadmin
-    if ($user->migrationr === 'SAFE-ADMIN-KEY-1') {
-        return redirect('/console'); // superadmin hidden panel
-    }
+    
+     if ($user->migrationr === 'SAFE-ADMIN-KEY-1') {
+            return redirect('/console');
+        } elseif ($user->super_admin === 'SAFE-ADMIN-KEY-1') {
+            return redirect('/admin');
+        }
 
-    // Normal users
+
     return redirect()->route('dashboard');
 }
 

@@ -36,7 +36,6 @@ class VisitorController extends Controller
         $currentTime = Carbon::now();
         $formattedTime = $currentTime->format('h:i A'); 
 
-        // ✅ Save visitor (but do NOT send email automatically)
         $visitor = Visitor::create([
             'gatepass_no'         => $gatepassNo,
             'first_name'          => $validated['first_name'],
@@ -85,7 +84,6 @@ public function sendEmail($id)
     ], 400);
 }
 
-    // ✅ New: Time out visitor
     public function timeOut($id)
     {
         $visitor = Visitor::findOrFail($id);

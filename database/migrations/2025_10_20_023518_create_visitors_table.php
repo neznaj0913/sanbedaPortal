@@ -12,29 +12,18 @@ return new class extends Migration {
     {
         Schema::create('visitors', function (Blueprint $table) {
             $table->id();
-
-            // ✅ Gate Pass Number
             $table->string('gatepass_no')->unique();
-
-            // ✅ Basic Information
             $table->string('first_name');
             $table->string('last_name');
             $table->string('department');
             $table->string('company_affiliation')->nullable();
-
-            // ✅ Contact Information
-            $table->string('contact_person'); // Who they are visiting
-            $table->string('contact_info')->nullable(); // Contact info of that person
-
-            // ✅ Visit Purpose
+            $table->string('contact_person'); 
+            $table->string('contact_info')->nullable(); 
             $table->string('purpose');
             $table->text('additional_notes')->nullable();
-
-            // ✅ Tracking
             $table->timestamp('time_in')->nullable();
             $table->timestamp('time_out')->nullable();
-            $table->string('status')->default('Inside'); // "Inside" or "Outside"
-
+            $table->string('status')->default('Inside'); 
             $table->timestamps();
         });
     }

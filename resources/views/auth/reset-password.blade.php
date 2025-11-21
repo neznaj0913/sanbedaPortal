@@ -8,7 +8,6 @@
 <body>
       <body style="background: url('{{ asset('src/bg.jpg') }}') no-repeat center center fixed; background-size: cover; filter: brightness(0.85);">
 
-  <!-- Header -->
     <header>
         <img src="{{ asset('src/Sanbeda-svd.svg') }}" alt="San Beda Logo" class="header-logo">
         <span class="header-text">San Beda College Alabang</span>

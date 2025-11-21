@@ -11,7 +11,6 @@ class Visitor extends Model
 
     protected $table = 'visitors';
 
-    // 👇 Ensure all relevant columns from your DB are mass assignable
     protected $fillable = [
         'gatepass_no',
         'first_name',
@@ -25,18 +24,16 @@ class Visitor extends Model
         'time_in',
         'time_out',
         'status',
-        'email',             // ✅ added because it exists in your DB
+        'email',            
         'created_at',
         'updated_at',
     ];
 
-    // 👇 Helpful computed attribute for convenience
     public function getFullNameAttribute()
     {
         return trim("{$this->first_name} {$this->last_name}");
     }
 
-    // 👇 Optional: automatically cast time fields to Carbon
     protected $casts = [
         'time_in' => 'datetime',
         'time_out' => 'datetime',

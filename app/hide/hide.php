@@ -5,6 +5,6 @@
 </head>
 <body>
     <h1>Welcome Superadmin!</h1>
-    <p>This is the hidden console panel.</p>
+    <p>This is the hidden super admin panel.</p>
 </body>
 </html>

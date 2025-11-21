@@ -1,24 +1,16 @@
-// ================================
-// ✅ Initialize Dashboard
-// ================================
 document.addEventListener('DOMContentLoaded', () => {
-    rebindSendEmailButtons(); // Bind email buttons (if any)
+    rebindSendEmailButtons(); 
 
-    // ✅ Only run visitor table refresh if it exists on the page
     if (document.querySelector('#visitorTable')) {
-        fetchVisitors(); // Initial table load
-        setInterval(fetchVisitors, 1000); // Auto-refresh every second
+        fetchVisitors(); 
+        setInterval(fetchVisitors, 1000); 
     }
 
-    // ✅ Only run charts if they exist on the page
     if (document.getElementById('visitorsByHour') || document.getElementById('visitorsByPurpose')) {
-        setupCharts(); // Initialize charts
+        setupCharts(); 
     }
 });
 
-// ================================
-// 📊 Dashboard Charts Setup
-// ================================
 function setupCharts() {
     const hourCtx = document.getElementById('visitorsByHour');
     if (hourCtx && window.Chart) {
@@ -83,9 +75,6 @@ if (companyCtx && window.Chart) {
 
 }
 
-// ================================
-// 🔄 Auto-refresh Visitor Table
-// ================================
 function fetchVisitors() {
     fetch(FETCH_VISITORS_URL)
         .then(response => response.json())
@@ -186,9 +175,6 @@ function fetchVisitors() {
         .catch(err => console.error('Error fetching visitors:', err));
 }
 
-// ================================
-// ✉️ Helper Function: Send Email
-// ================================
 function rebindSendEmailButtons() {
     document.querySelectorAll('.send-email-btn').forEach(btn => {
         btn.onclick = async () => {

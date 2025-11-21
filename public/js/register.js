@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
 
-    // ✅ SEND OTP
     sendOtpBtn.addEventListener("click", async () => {
         const email = emailInput.value.trim();
         if (!email) {
@@ -36,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 otpStatus.textContent = "OTP sent successfully to your email.";
                 otpStatus.style.color = "green";
 
-                // ✅ Keep button disabled and show timer
                 let countdown = 60;
                 sendOtpBtn.textContent = `Resend in ${countdown}s`;
 
@@ -65,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // ✅ VERIFY OTP
     verifyOtpBtn.addEventListener("click", async () => {
         const email = emailInput.value.trim();
         const otp = document.getElementById("otpInput").value.trim();
@@ -95,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 otpStatus.textContent = "OTP verified successfully!";
                 otpStatus.style.color = "green";
                 registerBtn.disabled = false;
-                sendOtpBtn.disabled = true; // ✅ keep disabled after successful verify
+                sendOtpBtn.disabled = true; 
                 sendOtpBtn.textContent = "OTP Verified ✓";
             } else {
                 otpStatus.textContent = data.message || "Invalid OTP.";

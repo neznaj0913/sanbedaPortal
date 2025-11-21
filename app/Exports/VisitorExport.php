@@ -24,7 +24,6 @@ class VisitorExport implements FromCollection, WithHeadings, WithMapping
 
     public function map($visitor): array
     {
-        // Calculate status dynamically (same logic as in your controller/blade)
         $status = $visitor->time_out ? 'Timed Out' : ($visitor->time_in ? 'Inside' : 'Pending');
 
         return [
@@ -32,8 +31,8 @@ class VisitorExport implements FromCollection, WithHeadings, WithMapping
             'Last Name'  => $visitor->last_name,
             'Department' => $visitor->department,
             'Purpose'    => $visitor->purpose,
-            'Email'      => $visitor->email, // Added email if needed
-            'Status'     => $status, // Use calculated status
+            'Email'      => $visitor->email, 
+            'Status'     => $status, 
             'Time In'    => $visitor->time_in 
                 ? Carbon::parse($visitor->time_in)->timezone('Asia/Manila')->format('m/d/Y h:i A') 
                 : '',
@@ -50,7 +49,7 @@ class VisitorExport implements FromCollection, WithHeadings, WithMapping
             'Last Name',
             'Department',
             'Purpose',
-            'Email', // Added email header
+            'Email', 
             'Status',
             'Time In',
             'Time Out',
