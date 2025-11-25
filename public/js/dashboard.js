@@ -25,7 +25,7 @@ function setupCharts() {
                 data: {
                     labels: hourLabels,
                     datasets: [{
-                        label: 'Check-ins',
+                        label: 'Time-ins',
                         data: hourData,
                         borderColor: '#d6001c',
                         backgroundColor: 'rgba(214, 0, 28, 0.2)',
@@ -41,7 +41,7 @@ function setupCharts() {
         }
     }
 
-   const companyCtx = document.getElementById('visitorsByCompany');
+   const companyCtx = document.getElementById('visitorsByPurpose');
 if (companyCtx && window.Chart) {
     const companyLabels = JSON.parse(companyCtx.dataset.labels || "[]");
     const companyData = JSON.parse(companyCtx.dataset.data || "[]");
@@ -175,6 +175,9 @@ function fetchVisitors() {
         .catch(err => console.error('Error fetching visitors:', err));
 }
 
+// ================================
+// ✉️ Helper Function: Send Email
+// ================================
 function rebindSendEmailButtons() {
     document.querySelectorAll('.send-email-btn').forEach(btn => {
         btn.onclick = async () => {

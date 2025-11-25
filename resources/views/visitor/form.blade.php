@@ -113,9 +113,24 @@ style="background: url('{{ asset('src/bg.jpg') }}') no-repeat center center fixe
                 <input type="email" name="contact_info" id="contact_info" value="{{ old('contact_info') }}">
             </div>
 
-            <div class="form-group">
-                <label for="purpose">Purpose of Visit:</label>
-                <textarea name="purpose" id="purpose" rows="3" required>{{ old('purpose') }}</textarea>
+           <div class="form-group">
+            <label for="purpose">Purpose of Visit:</label>
+
+            <select name="purpose" id="purpose" required>
+                <option value="">-- Select Purpose --</option>
+                <option value="Meeting" Meeting </option>
+                <option value="Delivery">Delivery</option>
+                <option value="Maintenance">Maintenance</option>
+                <option value="Interview">Interview</option>
+                <option value="Official Business">Official Business</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+          
+            <div class="form-group" id="otherPurposeGroup" style="display: none;">
+                <label for="other_purpose">Please specify:</label>
+                <input type="text" name="other_purpose" id="other_purpose" placeholder="Enter specific purpose">
             </div>
 
            

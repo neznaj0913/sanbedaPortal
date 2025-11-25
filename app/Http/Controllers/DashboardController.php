@@ -16,29 +16,58 @@ class DashboardController extends Controller
 
         return view('dashboard.user', compact('user', 'visitors'));
     }
+public function stats()
+{
+    $totalVisitors = Visitor::count();
+    $currentlyInside = Visitor::where('status', 'Inside')->count();
+    $checkedOut = Visitor::where('status', 'Checked Out')->count();
 
-    public function stats()
-    {
-        $totalVisitors = Visitor::count();
-        $currentlyInside = Visitor::where('status', 'Inside')->count();
-        $checkedOut = Visitor::where('status', 'Checked Out')->count();
+    $visitorsByHour = Visitor::selectRaw('HOUR(time_in) as hour, COUNT(*) as count')
+        ->groupBy('hour')
+        ->orderBy('hour')
+        ->get()
+        ->map(function ($v) {
+            return [
+                'hour_label' => sprintf("%02d:00", $v->hour),
+                'count' => $v->count
+            ];
+        });
 
-        $visitorsByHour = Visitor::selectRaw('HOUR(time_in) as hour, COUNT(*) as count')
-            ->groupBy('hour')
-            ->orderBy('hour')
-            ->get();
+   $visitorsByPurpose = Visitor::selectRaw("
+    CASE
+        WHEN purpose IN (
+            'Meeting',
+            'Maintenance',
+            'Delivery',
+            'Interview',
+            'Official Business'
+        )
+        THEN purpose
+        ELSE 'Others'
+    END as purpose_category,
+    COUNT(*) as count
+")
+->groupBy('purpose_category')
+->orderBy('count', 'desc')
+->get();
 
-        $visitorsByCompany = Visitor::selectRaw('company_affiliation, COUNT(*) as count')
-    ->groupBy('company_affiliation')
-    ->get();
 
+    
+    $otherPurposeCount = Visitor::where('purpose', 'Other')->count();
 
-          return view('dashboard.stats', compact(
+    $otherSpecificCount = Visitor::where('purpose', 'Other')
+        ->whereNotNull('additional_notes')
+        ->where('additional_notes', '!=', '')
+        ->count();
+
+    return view('dashboard.stats', compact(
         'totalVisitors',
         'currentlyInside',
         'checkedOut',
         'visitorsByHour',
-        'visitorsByCompany' 
+        'visitorsByPurpose',
+        'otherPurposeCount',
+        'otherSpecificCount'
     ));
 }
 
@@ -51,14 +80,20 @@ class DashboardController extends Controller
         $currentlyInside = Visitor::where('status', 'Inside')->count();
         $checkedOut = Visitor::where('status', 'Checked Out')->count();
 
-        $visitorsByHour = Visitor::selectRaw('HOUR(time_in) as hour, COUNT(*) as count')
-            ->groupBy('hour')
-            ->orderBy('hour')
-            ->get()
-            ->map(fn($v) => [
-                'hour_label' => sprintf("%02d:00", $v->hour),
-                'count' => $v->count
-            ]);
+     $visitorsByHour = Visitor::selectRaw('HOUR(time_in) as hour, COUNT(*) as count')
+    ->groupBy('hour')
+    ->orderBy('hour')
+    ->get()
+    ->map(function ($row) {
+       
+        $time = sprintf('%02d:00', $row->hour);   
+        $formatted = date("h:i A", strtotime($time)); 
+
+        return [
+            'hour_label' => $formatted, 
+            'count' => $row->count
+        ];
+    });
 
         $visitorsByPurpose = Visitor::selectRaw('purpose, COUNT(*) as count')
             ->groupBy('purpose')

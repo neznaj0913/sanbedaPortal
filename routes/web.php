@@ -18,6 +18,7 @@ use App\Http\Controllers\SuperAdminController;
 });
     Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register.form');
     Route::post('/register', [RegisterController::class, 'register'])->name('register.submit');
+    
 
     Route::post('/send-otp', [OTPController::class, 'sendOtp'])->name('otp.send');
     Route::post('/verify-otp', [OTPController::class, 'checkOtp'])->name('otp.verify');
@@ -97,3 +98,5 @@ use App\Http\Controllers\SuperAdminController;
     Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])
         ->name('logout');
 });
+    Route::get('/export-visitors', [VisitorHistoryController::class, 'export'])
+        ->name('export.visitors');

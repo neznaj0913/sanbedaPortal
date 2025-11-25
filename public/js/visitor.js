@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
         formContainer.classList.remove("blurred");
     }
 
-    // ===== Appointment Section Logic =====
     const checkbox = document.getElementById("setOtherDay");
     const appointmentSection = document.getElementById("appointmentSection");
     const appointmentInput = document.getElementById("appointment_time");
@@ -21,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // Helper: get local datetime in YYYY-MM-DDTHH:mm
     const getLocalDateTime = () => {
         const now = new Date();
         return new Date(now.getTime() - now.getTimezoneOffset() * 60000)
@@ -29,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
             .slice(0, 16);
     };
 
-    // Initialize appointment input
     const now = getLocalDateTime();
     appointmentInput.min = now;
     appointmentInput.value = now;
@@ -66,3 +63,19 @@ if (visitorForm) {
         console.log("Form is submitting...");
     });
 }
+document.addEventListener("DOMContentLoaded", () => {
+    const purposeDropdown = document.getElementById("purpose");
+    const otherPurposeGroup = document.getElementById("otherPurposeGroup");
+    const otherPurposeInput = document.getElementById("other_purpose");
+
+    purposeDropdown.addEventListener("change", () => {
+        if (purposeDropdown.value === "Other") {
+            otherPurposeGroup.style.display = "block";
+            otherPurposeInput.required = true;
+        } else {
+            otherPurposeGroup.style.display = "none";
+            otherPurposeInput.required = false;
+            otherPurposeInput.value = "";
+        }
+    });
+});

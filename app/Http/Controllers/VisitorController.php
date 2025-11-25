@@ -24,7 +24,8 @@ class VisitorController extends Controller
             'company_affiliation' => 'nullable|string|max:255',
             'contact_person'      => 'required|string|max:255',
             'contact_info'        => 'nullable|email|max:255',
-            'purpose'             => 'required|string|max:500',
+            'purpose'             => 'required|string|max:255',
+            'other_purpose'       => 'nullable|string|max:255',
             'additional_notes'    => 'nullable|string|max:500',
         ]);
 
@@ -36,6 +37,10 @@ class VisitorController extends Controller
         $currentTime = Carbon::now();
         $formattedTime = $currentTime->format('h:i A'); 
 
+            $finalPurpose = $validated['purpose'] === 'Other'
+            ? $validated['other_purpose']
+            : $validated['purpose'];
+
         $visitor = Visitor::create([
             'gatepass_no'         => $gatepassNo,
             'first_name'          => $validated['first_name'],
@@ -44,11 +49,10 @@ class VisitorController extends Controller
             'company_affiliation' => $validated['company_affiliation'] ?? null,
             'contact_person'      => $validated['contact_person'],
             'contact_info'        => $validated['contact_info'] ?? null,
-            'purpose'             => $validated['purpose'],
-            'additional_notes'    => $validated['additional_notes'] ?? null,
+            'purpose'             => $finalPurpose,
             'status'              => 'Inside',
             'time_in'             => $currentTime,
-        ]);
+]);
 
         return redirect()->back()->with([
             'success'      => "Visitor added successfully!",
