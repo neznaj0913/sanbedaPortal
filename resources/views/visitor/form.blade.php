@@ -118,7 +118,7 @@ style="background: url('{{ asset('src/bg.jpg') }}') no-repeat center center fixe
 
             <select name="purpose" id="purpose" required>
                 <option value="">-- Select Purpose --</option>
-                <option value="Meeting" Meeting </option>
+                <option value="Meeting">Meeting </option>
                 <option value="Delivery">Delivery</option>
                 <option value="Maintenance">Maintenance</option>
                 <option value="Interview">Interview</option>
@@ -132,15 +132,36 @@ style="background: url('{{ asset('src/bg.jpg') }}') no-repeat center center fixe
                 <label for="other_purpose">Please specify:</label>
                 <input type="text" name="other_purpose" id="other_purpose" placeholder="Enter specific purpose">
             </div>
-
            
-            <div class="form-submit">
-                <button type="submit" class="submit-btn">Submit</button>
-            </div>
+               <div class="form-group" style="margin-top:20px;">
+    <label>
+        <input type="checkbox" id="dataPrivacyCheck" required>
+        I agree to the 
+        <a href="#" id="openPrivacyModal" class="privacy-link">Data Privacy Terms</a>.
+    </label>
+</div>
+
+
+                <div class="form-submit">
+                    <button type="submit" class="submit-btn">Submit</button>
+                </div>
+
         </div>
     </form>
 </div>
 
+
+<div id="privacyModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+
+        <h2>Data Privacy Terms</h2>
+        <p>
+    By submitting this form, you voluntarily consent to the collection and processing of your personal information in accordance with the Data Privacy Act of 2012. Your data will be used solely for identity verification, visitor management, and security purposes within the facility. All information will be treated confidentially, protected with appropriate security measures, and retained only as long as necessary. You may also request access, correction, or deletion of your data by contacting our Data Privacy Officer.
+</p>
+
+    </div>
+</div>
 
 <script src="{{ asset('js/visitor.js') }}"></script>
 

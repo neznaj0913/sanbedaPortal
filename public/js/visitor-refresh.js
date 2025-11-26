@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 tableBody.innerHTML = rows;
             }
 
-            // Update statistics if they exist
+           
             if (totalVisitors && currentlyInside && checkedOut) {
                 totalVisitors.textContent = data.totalVisitors ?? 0;
                 currentlyInside.textContent = data.currentlyInside ?? 0;

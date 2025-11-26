@@ -23,7 +23,7 @@
     <p>Please attend to your visitor at your earliest convenience.</p>
 
     <p>Thank you,<br>
-    <strong>San Beda Visitor Management System</strong></p>
+    <strong>SBCA Security</strong></p>
 
 </body>
 </html>

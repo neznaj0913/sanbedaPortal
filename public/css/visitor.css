@@ -224,6 +224,95 @@ button.submit-btn:hover {
     user-select: none;
 }
 
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(214,0,28,0.25);
+    backdrop-filter: blur(4px);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background: #fff7f8;
+    border: 1px solid #f1b4b8;
+    border-radius: 14px;
+    width: 90%;
+    max-width: 600px;
+    padding: 25px 30px;
+    box-shadow: 0 8px 24px rgba(214,0,28,0.2);
+    animation: fadeIn 0.3s ease;
+    color: #5a0009;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #d6001c;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.modal-content p {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #4d0a11;
+    margin-bottom: 10px;
+}
+
+.close-modal {
+    float: right;
+    font-size: 26px;
+    cursor: pointer;
+    color: #b50018;
+    font-weight: bold;
+}
+.close-modal:hover {
+    color: #7f000f;
+}
+
+@keyframes fadeIn {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+
+#dataPrivacyCheck {
+    width: 18px;
+    height: 18px;
+    accent-color: #d6001c;
+    cursor: pointer;
+    margin-right: 5px;
+}
+.more-link {
+    color: #d6001c;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-left: 5px;
+    transition: 0.2s ease;
+}
+
+.more-link:hover {
+    color: #b50018;
+}
+.privacy-link {
+    color: #d6001c;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.privacy-link:hover {
+    color: #b50018;
+}
+
+
 @media (max-width: 768px) {
     
     .form-landscape {

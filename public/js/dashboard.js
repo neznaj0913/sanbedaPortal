@@ -175,9 +175,7 @@ function fetchVisitors() {
         .catch(err => console.error('Error fetching visitors:', err));
 }
 
-// ================================
-// ✉️ Helper Function: Send Email
-// ================================
+
 function rebindSendEmailButtons() {
     document.querySelectorAll('.send-email-btn').forEach(btn => {
         btn.onclick = async () => {
